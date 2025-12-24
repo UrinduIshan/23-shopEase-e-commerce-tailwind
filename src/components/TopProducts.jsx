@@ -29,7 +29,7 @@ const TopProducts = () => {
     }}>
         {products.map((product) => {
             return <div key={product.id} className='max-w-70 min-w-70 h-80 flex flex-col items-center justify-center 
-               whitespace-nowrap bg-wild-sand p-4 rounded-lg'>
+               text-center bg-wild-sand p-4 rounded-lg'>
                 <img src={product.thumbnail} alt={product.title} className='w-full h-full object-cover'/>
                 <span>{product.title}</span>
                 <span className='font-medium'>{product.price}</span>
