@@ -32,7 +32,7 @@ const TopProducts = () => {
                text-center bg-wild-sand p-4 rounded-lg'>
                 <img src={product.thumbnail} alt={product.title} className='w-full h-full object-cover'/>
                 <span>{product.title}</span>
-                <span className='font-medium'>{product.price}</span>
+                <span className='font-medium'>${product.price}</span>
             </div>
         })}
       </div>

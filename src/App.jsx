@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection'
 import TopProducts from './components/TopProducts'
 import FeatureSection from './components/FeatureSection'
 import { featureData } from './assets/featureData'  
+import Footer from './components/Footer'
 
 const App = () => {
   const features = featureData;
@@ -12,12 +13,15 @@ const App = () => {
       <Navbar />
       <HeroSection />
       <TopProducts />
-      <div className='flex flex-col w-full lg:w-[80%] m-auto'>
 
+      <div className='flex flex-col w-full lg:w-[80%] m-auto'>
         {features.map((feature, index) => (
           <FeatureSection key={index} feature={feature} />
         ))}
       </div>
+
+      <Footer />
+
     </div>
   )
 }
