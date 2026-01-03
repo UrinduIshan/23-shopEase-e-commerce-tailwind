@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { PRODUCTS_URL } from '../utils/app.constants'
 
 const TopProducts = () => {
     const [products, setProducts] = useState([])
+    const cardsRef = useRef();
+
 
     const fetchProducts = async () => {
         const response = await fetch(PRODUCTS_URL);
@@ -11,22 +13,24 @@ const TopProducts = () => {
         console.log(products)
         setProducts(products)
     } 
+
+    const handleWheel = (event) => {
+      event.preventDefault();
+      cardsRef.current.scrollLeft += event.deltaY;
+    }
     
     useEffect(() => {
         const fetchData = async () => {
             await fetchProducts();
         };
         fetchData();
+        cardsRef.current.addEventListener('wheel', handleWheel);
     }, [])
-
 
   return (
     <div className='flex flex-col w-[80%] m-auto mt-28'>
       <span className='text-4xl font-bold'>Top Products</span>
-      <div className="flex gap-8 overflow-x-scroll mt-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-        onWheel={(e) => {
-        e.currentTarget.scrollLeft += e.deltaY;
-    }}>
+      <div className="flex gap-8 overflow-x-scroll mt-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" ref={cardsRef}>
         {products.map((product) => {
             return <div key={product.id} className='max-w-70 min-w-70 h-80 flex flex-col items-center justify-center 
                text-center bg-wild-sand p-4 rounded-lg'>
